@@ -26,7 +26,7 @@ void SPrintCmd(int cmd) {
 void SPrintHD() {
   Serial.print("Opartion Time= ");
   char timeStr[14];
-  sprintf(timeStr, "%02d:%02d hh:mm ",(sol.DailyOpTm/12), (sol.DailyOpTm%12));
+  sprintf(timeStr, "%02d:%02d hh:mm ",(sol.DailyOpTm/12), ((sol.DailyOpTm*5)%12));
   Serial.print(timeStr); 
   Serial.print(float(sol.Gridoutput)/100);
   Serial.println(" kWh");
@@ -40,12 +40,14 @@ void SPrintFW() {
   Serial.println(word(sol.FW_version),HEX);
   Serial.print("Date= ");
   Serial.println(word(sol.FW_date),HEX);
+  Serial.println();
 } 
 
 void SPrintMP() {
   Serial.print("MaxPower= ");
   Serial.print(word(sol.MaxPower));
   Serial.println(" watt");
+  Serial.println();
 }
 
 void SPrintDS() {
@@ -73,11 +75,14 @@ void SPrintDS() {
   Serial.print("Total Power= ");
   Serial.print(float(sol.Totalpower)/100);
   Serial.println("kWh");
-  
+  // I really don't know, wy i must split the sprintf ?
   Serial.print("Total Operating time= ");
   char timeStr[14];
-  sprintf(timeStr, "%04d:%02d hh:mm ",(sol.TotalOperaTime/60), (sol.TotalOperaTime%60));
-  Serial.println(timeStr); 
+  sprintf(timeStr, "%04d:",(sol.TotalOperaTime/60));
+  Serial.print(timeStr); 
+  sprintf(timeStr, "%02d hh:mm ",  (sol.TotalOperaTime%60));
+  Serial.println(timeStr);
+  Serial.println();  
  }
 
 
@@ -132,6 +137,7 @@ void SPrintbuffer(){
   Serial.println();
   Serial.print("BufferSize= ");
   Serial.println(sol.RxLgth);
+  Serial.println();  
 }
 
 

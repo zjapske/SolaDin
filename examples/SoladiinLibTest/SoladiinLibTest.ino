@@ -19,11 +19,12 @@ void setup()
   Serial.println("h - Read hystory data");
   Serial.println("d - Read device status");
   Serial.println("x - Write RXbuffer");
+  Serial.println();
 }
 
 void loop() {                   
   if (!connect) {      					// Try to connect
-   Serial.print("Cmd: Probe");
+    Serial.print("Cmd: Probe");
     for (int i=0 ; i < 4 ; i++) {
       if (sol.query(PRB)) {				// Try connecting to slave
         connect = true; 
@@ -35,7 +36,7 @@ void loop() {
     }
   }
   if (Serial.available() > 0) {				// read serial comands
-	char incomingByte = Serial.read();   
+    char incomingByte = Serial.read();   
     switch (incomingByte) {
     case 'f':       					// read firmware  
       doFW();
@@ -107,7 +108,7 @@ void doRMP(){
   if (connect) {  
     SPrintCmd(5); 
     sol.query(ZMP);					// Reset Maximum power register
-    }
+  }
 }
 
 
@@ -115,10 +116,11 @@ void doHD(){
   if (connect) {  
     SPrintCmd(6); 
     for (int i=0 ; i < 10 ; i++) {			// loop this for the last 10 days
-         if (sol.query(HSD,i)) {			// Read history data  
+      if (sol.query(HSD,i)) {			// Read history data  
         SPrintHD(); 
       }
     }
+     Serial.println();
   }
 }
 
@@ -127,6 +129,7 @@ void doHD(){
 void doX(){
   SPrintbuffer();  
 }
+
 
 
 

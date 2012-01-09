@@ -1,7 +1,7 @@
 ﻿This is a libary for arduino connecting to a Soladin 600 inverter
 Soladin 600 en Windmaster 500 inverters from mastervolt are basicly the same
 Connecting to windmaster is not tested.
-The libary uses the softerial libary to make a connection to the Soladin, leaving the
+The libary uses the softserial libary to make a connection to the Soladin, leaving the
 hardware serial for programming and monitoring.
 Libary made and tested on version 1.0 and 0.22
 
