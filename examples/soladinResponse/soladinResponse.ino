@@ -49,7 +49,7 @@ void loop() { // run over and over
   }
   if (cnt > 0) {SPrintbuffer();}
   if ( cnt > 0 ) {
-    switch (RxBuf[4]) {
+    switch (byte(RxBuf[4])) {
     case 0xC1: sndBuf(9,cmdC1); cnt = 0; break;
     case 0xB4: sndBuf(31,cmdB4); cnt = 0; break;
     case 0xB9: sndBuf(31,cmdB9); cnt = 0; break;  
